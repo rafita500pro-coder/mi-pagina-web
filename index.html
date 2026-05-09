@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <!-- ===================================================
+       STEPSTYLE — Tienda de Zapatos Premium
+       Diseño: Dark luxury con acentos dorados
+       =================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO básico -->
+  <title>StepStyle — Calzado Premium & Edición Limitada</title>
+  <meta name="description" content="Descubre calzado de lujo artesanal. Colecciones exclusivas para quienes valoran la elegancia y el estilo sin compromisos." />
+  <meta name="keywords" content="zapatos premium, calzado de lujo, zapatos artesanales, StepStyle, moda" />
+  <meta name="author" content="StepStyle" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="StepStyle — Calzado Premium" />
+  <meta property="og:description" content="Calzado artesanal de lujo. Estilo sin compromiso." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200&q=80" />
+
+  <!-- Favicon (emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👟</text></svg>" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            body: ['Outfit', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Iconos: Remixicon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <!-- ── Cursor personalizado ─────────────────────── -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ── Toast ────────────────────────────────────── -->
+  <div id="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ══════════════════════════════════════════════
+       NAVBAR
+       ══════════════════════════════════════════════ -->
+  <nav id="navbar" class="px-6 md:px-12 lg:px-20" role="navigation" aria-label="Navegación principal">
+    <div class="flex items-center justify-between h-full max-w-screen-xl mx-auto">
+
+      <!-- Logo -->
+      <a href="#hero" class="nav-logo" aria-label="StepStyle — Inicio">
+        Step<em style="font-style:italic;color:var(--brand-gold)">Style</em>
+      </a>
+
+      <!-- Links desktop -->
+      <ul class="hidden lg:flex items-center gap-8 list-none" role="list">
+        <li><a href="#about"    class="nav-link">Nosotros</a></li>
+        <li><a href="#products" class="nav-link">Colección</a></li>
+        <li><a href="#gallery"  class="nav-link">Galería</a></li>
+        <li><a href="#pricing"  class="nav-link">Membresía</a></li>
+        <li><a href="#contact"  class="nav-link">Contacto</a></li>
+      </ul>
+
+      <!-- Acciones desktop -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button id="theme-toggle" aria-label="Cambiar tema"></button>
+        <a href="#products" class="btn-primary">
+          <i class="ri-shopping-bag-3-line" aria-hidden="true"></i>
+          Comprar
+        </a>
+      </div>
+
+      <!-- Botón hamburguesa -->
+      <div class="flex lg:hidden items-center gap-4">
+        <button id="theme-toggle-mobile" onclick="document.getElementById('theme-toggle').click()"
+          aria-label="Cambiar tema"
+          class="text-xl" style="color:var(--brand-gold);">
+          <i class="ri-sun-line" id="theme-icon"></i>
+        </button>
+        <button id="menu-toggle" aria-label="Abrir menú"
+          class="text-2xl" style="color:var(--text-primary);">
+          <i class="ri-menu-3-line"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Menú móvil ────────────────────────────────── -->
+  <div id="mobile-menu" aria-label="Menú móvil">
+    <button id="menu-close" aria-label="Cerrar menú"
+      class="absolute top-6 right-6 text-3xl" style="color:var(--text-muted)">
+      <i class="ri-close-line"></i>
+    </button>
+    <a href="#about"    class="mobile-nav-link">Nosotros</a>
+    <a href="#products" class="mobile-nav-link">Colección</a>
+    <a href="#gallery"  class="mobile-nav-link">Galería</a>
+    <a href="#stats"    class="mobile-nav-link">Stats</a>
+    <a href="#pricing"  class="mobile-nav-link">Membresía</a>
+    <a href="#faq"      class="mobile-nav-link">FAQ</a>
+    <a href="#contact"  class="mobile-nav-link">Contacto</a>
+    <a href="#products" class="btn-primary mt-4">Comprar ahora</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════ -->
+  <section id="hero" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-noise" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20 w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center py-20 lg:py-0">
+
+        <!-- Texto Hero -->
+        <div>
+          <p class="hero-eyebrow reveal">✦ Colección Otoño 2025</p>
+          <h1 class="hero-title reveal reveal-delay-1" id="hero-title">
+            El arte de<br/>
+            <em>caminar</em><br/>
+            con estilo
+          </h1>
+          <p class="hero-subtitle reveal reveal-delay-2">
+            Zapatos artesanales que fusionan tradición y modernidad.
+            Cada par, una obra maestra diseñada para quienes no
+            se conforman con lo ordinario.
+          </p>
+          <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
+            <a href="#products" class="btn-primary">
+              Explorar colección
+              <i class="ri-arrow-right-line" aria-hidden="true"></i>
+            </a>
+            <a href="#about" class="btn-outline">Nuestra historia</a>
+          </div>
+
+          <!-- Trust signals -->
+          <div class="flex flex-wrap items-center gap-6 mt-10 reveal reveal-delay-4">
+            <div class="flex items-center gap-2">
+              <div style="color:var(--brand-gold);">★★★★★</div>
+              <span class="text-sm" style="color:var(--text-muted);">4.9 de 2,300+ reseñas</span>
+            </div>
+            <div class="w-px h-4" style="background:var(--border-color);" aria-hidden="true"></div>
+            <div class="flex items-center gap-2" style="color:var(--text-muted); font-size:0.85rem;">
+              <i class="ri-shield-check-line text-gold" style="color:var(--brand-gold);" aria-hidden="true"></i>
+              Garantía 2 años
+            </div>
+            <div class="w-px h-4" style="background:var(--border-color);" aria-hidden="true"></div>
+            <div class="flex items-center gap-2" style="color:var(--text-muted); font-size:0.85rem;">
+              <i class="ri-truck-line" style="color:var(--brand-gold);" aria-hidden="true"></i>
+              Envío gratis +$80
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagen Hero -->
+        <div class="relative hero reveal reveal-delay-2">
+          <div class="hero-image-frame">
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=85&auto=format"
+              alt="Zapato deportivo premium StepStyle en fondo rojo"
+              class="w-full hero-parallax-img"
+              style="aspect-ratio:4/5; object-fit:cover;"
+              loading="eager"
+            />
+            <!-- Badge flotante -->
+            <div class="hero-badge">
+              <p style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--brand-gold);">Edición Limitada</p>
+              <p class="font-display" style="font-size:1.4rem; font-weight:300; color:var(--text-primary); margin-top:2px;">Solo 50 pares</p>
+            </div>
+          </div>
+
+          <!-- Tarjetita flotante extra -->
+          <div class="glass-card absolute -left-6 top-1/3 p-4 hidden lg:block reveal reveal-delay-4"
+               style="max-width:160px;">
+            <div style="font-size:0.7rem; color:var(--text-muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">Nuevo</div>
+            <div class="font-display" style="font-size:1.1rem; color:var(--text-primary);">Urban Runner</div>
+            <div style="color:var(--brand-gold); font-weight:600; margin-top:4px;">$129.99</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" aria-hidden="true">
+      <span style="font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--text-muted);">Scroll</span>
+      <div style="width:1px; height:40px; background:linear-gradient(to bottom, var(--brand-gold), transparent);"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SOBRE NOSOTROS
+       ══════════════════════════════════════════════ -->
+  <section id="about" class="py-24 lg:py-36 bg-section" aria-labelledby="about-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Imágenes -->
+        <div class="relative reveal">
+          <div class="grid grid-cols-2 gap-4">
+            <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=600&q=80&auto=format"
+                 alt="Taller artesanal de calzado"
+                 class="w-full rounded-2xl" style="aspect-ratio:3/4; object-fit:cover;" loading="lazy"/>
+            <div class="flex flex-col gap-4 pt-8">
+              <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&q=80&auto=format"
+                   alt="Detalle de costura artesanal en zapato de cuero"
+                   class="w-full rounded-2xl" style="aspect-ratio:1/1; object-fit:cover;" loading="lazy"/>
+              <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="stat-number" data-count="18" data-suffix=" años">0</div>
+                <div class="stat-label">De experiencia</div>
+              </div>
+            </div>
+          </div>
+          <!-- Decoración -->
+          <div class="absolute -bottom-4 -left-4 w-24 h-24 rounded-full opacity-20"
+               style="background:var(--brand-gold);" aria-hidden="true"></div>
+        </div>
+
+        <!-- Texto -->
+        <div>
+          <p class="section-eyebrow reveal">Nuestra historia</p>
+          <h2 class="section-title reveal reveal-delay-1" id="about-title">
+            Artesanía que <em>trasciende</em><br/>generaciones
+          </h2>
+          <div class="divider-gold reveal reveal-delay-1"></div>
+          <p class="section-subtitle reveal reveal-delay-2">
+            Desde 2007, StepStyle nació de la pasión por unir el arte tradicional del
+            zapatero con el diseño contemporáneo. Cada par pasa por 120 pasos de
+            manufactura antes de llegar a tus manos.
+          </p>
+          <p class="section-subtitle mt-4 reveal reveal-delay-3">
+            Trabajamos con cueros seleccionados de curtiembres sostenibles en Italia
+            y Brasil, garantizando calidad, durabilidad y respeto por el medio ambiente.
+          </p>
+
+          <div class="grid grid-cols-3 gap-6 mt-10 reveal reveal-delay-3">
+            <div class="text-center">
+              <div class="stat-number" data-count="120" data-suffix="+">0+</div>
+              <div class="stat-label">Pasos artesanales</div>
+            </div>
+            <div class="text-center">
+              <div class="stat-number" data-count="50" data-suffix="+">0+</div>
+              <div class="stat-label">Modelos únicos</div>
+            </div>
+            <div class="text-center">
+              <div class="stat-number" data-count="30" data-suffix="">0</div>
+              <div class="stat-label">Países de envío</div>
+            </div>
+          </div>
+
+          <a href="#products" class="btn-primary mt-10 reveal reveal-delay-4" style="display:inline-flex;">
+            Ver colección
+            <i class="ri-arrow-right-line" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       PRODUCTOS / COLECCIÓN
+       ══════════════════════════════════════════════ -->
+  <section id="products" class="py-24 lg:py-36" aria-labelledby="products-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+
+      <!-- Header -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="section-eyebrow reveal">Colección 2025</p>
+        <h2 class="section-title reveal reveal-delay-1" id="products-title">
+          Diseñados para <em>cada paso</em>
+        </h2>
+        <p class="section-subtitle mx-auto reveal reveal-delay-2">
+          Explora nuestra selección de calzado premium. De lo casual a lo formal,
+          siempre con el sello artesanal que nos distingue.
+        </p>
+      </div>
+
+      <!-- Tabs de categorías -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12 reveal reveal-delay-2">
+        <button class="category-tab active" data-category="all">Todo</button>
+        <button class="category-tab" data-category="casual">Casual</button>
+        <button class="category-tab" data-category="formal">Formal</button>
+        <button class="category-tab" data-category="sport">Sport</button>
+        <button class="category-tab" data-category="limited">Ed. Limitada</button>
+      </div>
+
+      <!-- Grid de productos -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <!-- Producto 1 -->
+        <article class="product-card reveal" data-category="sport" aria-label="Urban Runner">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80&auto=format"
+                 alt="Zapato deportivo Urban Runner rojo y blanco" loading="lazy"/>
+            <span class="product-badge">Nuevo</span>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Urban Runner al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Sport</p>
+            <h3 class="product-name">Urban Runner</h3>
+            <div class="flex items-center justify-between mt-3">
+              <div>
+                <span class="product-price">$129.99</span>
+                <span class="product-price-old">$159.99</span>
+              </div>
+              <div class="product-colors" aria-label="Colores disponibles">
+                <span class="color-dot" style="background:#E24B4A;" title="Rojo"></span>
+                <span class="color-dot" style="background:#1A1A1A;" title="Negro"></span>
+                <span class="color-dot" style="background:#F5F0E8;" title="Blanco"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 2 -->
+        <article class="product-card reveal reveal-delay-1" data-category="formal" aria-label="Oxford Luxe">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&q=80&auto=format"
+                 alt="Zapato Oxford de cuero negro Oxford Luxe" loading="lazy"/>
+            <span class="product-badge" style="background:var(--brand-gold-lt); color:#0D0D0D;">Premium</span>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Oxford Luxe al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Formal</p>
+            <h3 class="product-name">Oxford Luxe</h3>
+            <div class="flex items-center justify-between mt-3">
+              <span class="product-price">$215.00</span>
+              <div class="product-colors" aria-label="Colores disponibles">
+                <span class="color-dot" style="background:#2C2018;" title="Marrón oscuro"></span>
+                <span class="color-dot" style="background:#0D0D0D;" title="Negro"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 3 -->
+        <article class="product-card reveal reveal-delay-2" data-category="casual" aria-label="Drift Classic">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80&auto=format"
+                 alt="Zapatilla casual blanca Drift Classic" loading="lazy"/>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Drift Classic al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Casual</p>
+            <h3 class="product-name">Drift Classic</h3>
+            <div class="flex items-center justify-between mt-3">
+              <div>
+                <span class="product-price">$98.00</span>
+                <span class="product-price-old">$120.00</span>
+              </div>
+              <div class="product-colors" aria-label="Colores disponibles">
+                <span class="color-dot" style="background:#F5F0E8;" title="Blanco crema"></span>
+                <span class="color-dot" style="background:#888;" title="Gris"></span>
+                <span class="color-dot" style="background:#4A3728;" title="Camel"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 4 -->
+        <article class="product-card reveal reveal-delay-3" data-category="limited" aria-label="Noir Édition">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600&q=80&auto=format"
+                 alt="Zapatilla edición limitada Noir Édition en negro mate" loading="lazy"/>
+            <span class="product-badge" style="background:#0D0D0D; color:var(--brand-gold);">50 pares</span>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Noir Édition al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Ed. Limitada</p>
+            <h3 class="product-name">Noir Édition</h3>
+            <div class="flex items-center justify-between mt-3">
+              <span class="product-price">$380.00</span>
+              <span style="font-size:0.75rem; color:var(--brand-gold);">12 restantes</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 5 -->
+        <article class="product-card reveal" data-category="casual" aria-label="Terra Loafer">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&q=80&auto=format"
+                 alt="Mocasín casual Terra Loafer en cuero marrón" loading="lazy"/>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Terra Loafer al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Casual</p>
+            <h3 class="product-name">Terra Loafer</h3>
+            <div class="flex items-center justify-between mt-3">
+              <span class="product-price">$142.00</span>
+              <div class="product-colors" aria-label="Colores disponibles">
+                <span class="color-dot" style="background:#8B5E3C;" title="Camel"></span>
+                <span class="color-dot" style="background:#2C2018;" title="Marrón oscuro"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 6 -->
+        <article class="product-card reveal reveal-delay-1" data-category="sport" aria-label="Apex Pro">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80&auto=format"
+                 alt="Zapatilla running Apex Pro gris y naranja" loading="lazy"/>
+            <span class="product-badge">Bestseller</span>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Apex Pro al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Sport</p>
+            <h3 class="product-name">Apex Pro</h3>
+            <div class="flex items-center justify-between mt-3">
+              <div>
+                <span class="product-price">$175.00</span>
+                <span class="product-price-old">$210.00</span>
+              </div>
+              <div class="product-colors" aria-label="Colores disponibles">
+                <span class="color-dot" style="background:#888;" title="Gris"></span>
+                <span class="color-dot" style="background:#E8863A;" title="Naranja"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 7 -->
+        <article class="product-card reveal reveal-delay-2" data-category="formal" aria-label="Monte Chelsea">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1638247025967-b4e38f787b76?w=600&q=80&auto=format"
+                 alt="Botín formal Monte Chelsea en cuero marrón" loading="lazy"/>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Monte Chelsea al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Formal</p>
+            <h3 class="product-name">Monte Chelsea</h3>
+            <div class="flex items-center justify-between mt-3">
+              <span class="product-price">$190.00</span>
+              <div class="product-colors" aria-label="Colores disponibles">
+                <span class="color-dot" style="background:#5C4033;" title="Marrón"></span>
+                <span class="color-dot" style="background:#1A1A1A;" title="Negro"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 8 -->
+        <article class="product-card reveal reveal-delay-3" data-category="limited" aria-label="Gold Script">
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&q=80&auto=format"
+                 alt="Zapatilla edición especial Gold Script con detalles dorados" loading="lazy"/>
+            <span class="product-badge" style="background:var(--brand-gold); color:#0D0D0D;">Exclusivo</span>
+            <div class="product-quick-add">
+              <button class="btn-primary btn-add-cart" aria-label="Añadir Gold Script al carrito">
+                <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                Añadir
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Ed. Limitada</p>
+            <h3 class="product-name">Gold Script</h3>
+            <div class="flex items-center justify-between mt-3">
+              <span class="product-price">$445.00</span>
+              <span style="font-size:0.75rem; color:var(--brand-gold);">5 restantes</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="text-center mt-12 reveal">
+        <a href="#contact" class="btn-outline">Ver toda la colección</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       GALERÍA
+       ══════════════════════════════════════════════ -->
+  <section id="gallery" class="py-24 lg:py-36 bg-section" aria-labelledby="gallery-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+
+      <div class="text-center mb-14">
+        <p class="section-eyebrow reveal">Galería</p>
+        <h2 class="section-title reveal reveal-delay-1" id="gallery-title">
+          El <em>detalle</em> que marca la diferencia
+        </h2>
+      </div>
+
+      <!-- Gallery grid editorial -->
+      <div class="gallery-grid reveal reveal-delay-1">
+        <div class="gallery-item" style="grid-column:span 5; grid-row:span 2; min-height:380px;"
+             data-src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200&q=85">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80&auto=format"
+               alt="Zapato deportivo rojo desde perspectiva frontal" loading="lazy"/>
+          <div class="gallery-overlay"></div>
+          <div class="gallery-caption">
+            <p class="font-display" style="font-size:1.2rem; font-weight:300;">Urban Runner</p>
+            <p style="font-size:0.75rem; opacity:0.75;">Sport Collection</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" style="grid-column:span 4; min-height:180px;"
+             data-src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=1200&q=85">
+          <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=600&q=80&auto=format"
+               alt="Vista lateral de zapatilla casual en fondo claro" loading="lazy"/>
+          <div class="gallery-overlay"></div>
+          <div class="gallery-caption">
+            <p class="font-display" style="font-size:1rem; font-weight:300;">Drift Classic</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" style="grid-column:span 3; min-height:180px;"
+             data-src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=1200&q=85">
+          <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&q=80&auto=format"
+               alt="Detalle del tacón de un zapato artesanal" loading="lazy"/>
+          <div class="gallery-overlay"></div>
+          <div class="gallery-caption">
+            <p class="font-display" style="font-size:1rem; font-weight:300;">Detalle artesanal</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" style="grid-column:span 4; min-height:180px;"
+             data-src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1200&q=85">
+          <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80&auto=format"
+               alt="Zapatilla blanca sobre fondo neutro minimalista" loading="lazy"/>
+          <div class="gallery-overlay"></div>
+          <div class="gallery-caption">
+            <p class="font-display" style="font-size:1rem; font-weight:300;">Minimal Pure</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" style="grid-column:span 3; min-height:180px;"
+             data-src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=1200&q=85">
+          <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80&auto=format"
+               alt="Zapatilla running desde ángulo bajo" loading="lazy"/>
+          <div class="gallery-overlay"></div>
+          <div class="gallery-caption">
+            <p class="font-display" style="font-size:1rem; font-weight:300;">Apex Pro</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div id="lightbox" role="dialog" aria-modal="true" aria-label="Galería ampliada"
+           style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9000; align-items:center; justify-content:center; cursor:pointer;">
+        <img id="lightbox-img" src="" alt="Imagen ampliada" style="max-width:90vw; max-height:90vh; border-radius:12px; object-fit:contain;"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       ESTADÍSTICAS
+       ══════════════════════════════════════════════ -->
+  <section id="stats" class="py-24" aria-labelledby="stats-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+      <h2 class="sr-only" id="stats-title">Nuestras cifras</h2>
+
+      <div class="glass-card p-12 lg:p-16">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 text-center">
+
+          <div class="reveal">
+            <div class="stat-number" data-count="15000" data-suffix="+">0+</div>
+            <div class="stat-label">Clientes satisfechos</div>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <div class="stat-number" data-count="98" data-suffix="%">0%</div>
+            <div class="stat-label">Tasa de satisfacción</div>
+          </div>
+          <div class="reveal reveal-delay-2">
+            <div class="stat-number" data-count="50" data-suffix="+">0+</div>
+            <div class="stat-label">Modelos exclusivos</div>
+          </div>
+          <div class="reveal reveal-delay-3">
+            <div class="stat-number" data-count="30" data-suffix="">0</div>
+            <div class="stat-label">Países de envío</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       TESTIMONIOS
+       ══════════════════════════════════════════════ -->
+  <section id="testimonials" class="py-24 lg:py-36 bg-section" aria-labelledby="testimonials-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+
+      <div class="text-center mb-14">
+        <p class="section-eyebrow reveal">Testimonios</p>
+        <h2 class="section-title reveal reveal-delay-1" id="testimonials-title">
+          Lo que dicen <em>nuestros clientes</em>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Testimonio 1 -->
+        <blockquote class="testimonial-card reveal" cite="cliente">
+          <p class="testimonial-stars" aria-label="5 estrellas">★★★★★</p>
+          <p class="testimonial-text">
+            "Los Oxford Luxe son simplemente perfectos. La calidad del cuero es
+            superior a cualquier cosa que haya usado antes. Los llevo a cada reunión importante."
+          </p>
+          <footer class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/48?img=3" alt="Foto de perfil de Andrés M."
+                 class="rounded-full w-12 h-12 object-cover" loading="lazy" />
+            <div>
+              <cite class="testimonial-author-name not-italic">Andrés Martínez</cite>
+              <p class="testimonial-author-role">Director Ejecutivo, Bogotá</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Testimonio 2 — destacado -->
+        <blockquote class="testimonial-card reveal reveal-delay-1" style="border-color:var(--brand-gold);" cite="cliente">
+          <p class="testimonial-stars" aria-label="5 estrellas">★★★★★</p>
+          <p class="testimonial-text">
+            "Compré los Urban Runner pensando que eran solo lindos, ¡pero también son increíblemente cómodos!
+            Los uso todos los días y siguen como nuevos después de 6 meses."
+          </p>
+          <footer class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/48?img=47" alt="Foto de perfil de Valeria Torres"
+                 class="rounded-full w-12 h-12 object-cover" loading="lazy" />
+            <div>
+              <cite class="testimonial-author-name not-italic">Valeria Torres</cite>
+              <p class="testimonial-author-role">Diseñadora de modas, CDMX</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Testimonio 3 -->
+        <blockquote class="testimonial-card reveal reveal-delay-2" cite="cliente">
+          <p class="testimonial-stars" aria-label="5 estrellas">★★★★★</p>
+          <p class="testimonial-text">
+            "El servicio al cliente es excepcional. Me asesoraron perfectamente para elegir
+            la talla correcta. La entrega fue rápida y el empaque premium simplemente espectacular."
+          </p>
+          <footer class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/48?img=12" alt="Foto de perfil de Carlos Reyes"
+                 class="rounded-full w-12 h-12 object-cover" loading="lazy" />
+            <div>
+              <cite class="testimonial-author-name not-italic">Carlos Reyes</cite>
+              <p class="testimonial-author-role">Arquitecto, Madrid</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Testimonio 4 -->
+        <blockquote class="testimonial-card reveal" cite="cliente">
+          <p class="testimonial-stars" aria-label="5 estrellas">★★★★★</p>
+          <p class="testimonial-text">
+            "La Noir Édition fue una inversión que valió cada centavo. Me detienen
+            en la calle para preguntar dónde los compré. Únicamente StepStyle."
+          </p>
+          <footer class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/48?img=32" alt="Foto de perfil de Diego Fuentes"
+                 class="rounded-full w-12 h-12 object-cover" loading="lazy" />
+            <div>
+              <cite class="testimonial-author-name not-italic">Diego Fuentes</cite>
+              <p class="testimonial-author-role">Chef, Buenos Aires</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Testimonio 5 -->
+        <blockquote class="testimonial-card reveal reveal-delay-1" cite="cliente">
+          <p class="testimonial-stars" aria-label="5 de 5 estrellas">★★★★★</p>
+          <p class="testimonial-text">
+            "Como podóloga recomiendo StepStyle a todos mis pacientes que buscan
+            estilo sin sacrificar la salud del pie. La suela ergonómica es un plus increíble."
+          </p>
+          <footer class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/48?img=20" alt="Foto de perfil de Dra. Sofia L."
+                 class="rounded-full w-12 h-12 object-cover" loading="lazy" />
+            <div>
+              <cite class="testimonial-author-name not-italic">Dra. Sofía León</cite>
+              <p class="testimonial-author-role">Podóloga, Lima</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Testimonio 6 -->
+        <blockquote class="testimonial-card reveal reveal-delay-2" cite="cliente">
+          <p class="testimonial-stars" aria-label="5 estrellas">★★★★★</p>
+          <p class="testimonial-text">
+            "Llevo 3 pares de StepStyle y cada uno es mejor que el anterior. El Terra Loafer
+            es mi favorito: elegante para la oficina y cómodo para el fin de semana."
+          </p>
+          <footer class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/48?img=61" alt="Foto de perfil de Miguel Herrera"
+                 class="rounded-full w-12 h-12 object-cover" loading="lazy" />
+            <div>
+              <cite class="testimonial-author-name not-italic">Miguel Herrera</cite>
+              <p class="testimonial-author-role">Consultor, Monterrey</p>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       TABLA DE PRECIOS / MEMBRESÍA
+       ══════════════════════════════════════════════ -->
+  <section id="pricing" class="py-24 lg:py-36" aria-labelledby="pricing-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+
+      <div class="text-center mb-14">
+        <p class="section-eyebrow reveal">Membresía StepStyle</p>
+        <h2 class="section-title reveal reveal-delay-1" id="pricing-title">
+          Beneficios <em>exclusivos</em> para ti
+        </h2>
+        <p class="section-subtitle mx-auto reveal reveal-delay-2">
+          Únete a nuestra comunidad y disfruta de descuentos, acceso anticipado a ediciones
+          limitadas y mucho más. Sin contratos, cancela cuando quieras.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+        <!-- Plan Básico -->
+        <div class="price-card reveal">
+          <p style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem;">Básico</p>
+          <div class="flex items-end gap-1 mb-2">
+            <span class="price-amount">$0</span>
+            <span class="price-period">/mes</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">
+            Acceso a nuestra tienda y beneficios de bienvenida.
+          </p>
+          <div class="space-y-1 mb-8">
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Acceso a toda la tienda</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Historial de compras</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Soporte por email</div>
+            <div class="price-feature" style="opacity:0.35;"><div class="price-check">—</div>Descuentos exclusivos</div>
+            <div class="price-feature" style="opacity:0.35;"><div class="price-check">—</div>Acceso anticipado</div>
+          </div>
+          <a href="#contact" class="btn-outline w-full text-center" style="justify-content:center;">Comenzar gratis</a>
+        </div>
+
+        <!-- Plan Premium — destacado -->
+        <div class="price-card featured reveal reveal-delay-1" style="position:relative;">
+          <div style="position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--brand-gold); color:#0D0D0D; font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:0.3rem 1.2rem; border-radius:20px; white-space:nowrap;">
+            Más popular
+          </div>
+          <p style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--brand-gold); margin-bottom:0.5rem;">Premium</p>
+          <div class="flex items-end gap-1 mb-2">
+            <span class="price-amount">$19</span>
+            <span class="price-period">/mes</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">
+            Para amantes del calzado que quieren lo mejor.
+          </p>
+          <div class="space-y-1 mb-8">
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Todo lo del plan Básico</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>15% descuento en todo</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Acceso anticipado 48h</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Envío gratis siempre</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Soporte prioritario 24/7</div>
+          </div>
+          <a href="#contact" class="btn-primary w-full text-center" style="justify-content:center;">Unirme ahora</a>
+        </div>
+
+        <!-- Plan Elite -->
+        <div class="price-card reveal reveal-delay-2">
+          <p style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem;">Elite</p>
+          <div class="flex items-end gap-1 mb-2">
+            <span class="price-amount">$49</span>
+            <span class="price-period">/mes</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">
+            La experiencia StepStyle al máximo nivel.
+          </p>
+          <div class="space-y-1 mb-8">
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Todo lo del plan Premium</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>25% descuento permanente</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Piezas de edición limitada</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Personalización de diseño</div>
+            <div class="price-feature"><div class="price-check"><i class="ri-check-line" aria-hidden="true"></i></div>Asesor personal de estilo</div>
+          </div>
+          <a href="#contact" class="btn-outline w-full text-center" style="justify-content:center;">Ir al Elite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FAQ
+       ══════════════════════════════════════════════ -->
+  <section id="faq" class="py-24 lg:py-36 bg-section" aria-labelledby="faq-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Título -->
+        <div>
+          <p class="section-eyebrow reveal">FAQ</p>
+          <h2 class="section-title reveal reveal-delay-1" id="faq-title">
+            Preguntas<br/><em>frecuentes</em>
+          </h2>
+          <div class="divider-gold reveal reveal-delay-1"></div>
+          <p class="section-subtitle reveal reveal-delay-2">
+            ¿Tienes dudas? Aquí encontrarás respuestas a las preguntas más comunes.
+            Si no encuentras lo que buscas, escríbenos directamente.
+          </p>
+          <a href="#contact" class="btn-primary mt-8 reveal reveal-delay-3" style="display:inline-flex;">
+            Contáctanos
+            <i class="ri-message-2-line" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <!-- Acordeón -->
+        <div>
+          <div class="faq-item reveal">
+            <button class="faq-toggle" aria-expanded="false">
+              ¿Cómo sé qué talla elegir?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Contamos con una guía de tallas detallada con medidas en cm, pulgadas y tallas europeas/americanas. 
+                Recomendamos medir tu pie al final del día cuando está un poco más hinchado para la medición más 
+                precisa. Si estás entre dos tallas, generalmente sugerimos ir a la mayor.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal reveal-delay-1">
+            <button class="faq-toggle" aria-expanded="false">
+              ¿Cuánto tarda el envío?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Los pedidos nacionales se entregan en 2–5 días hábiles. Los internacionales entre 7–14 días 
+                dependiendo del destino. Los miembros Premium y Elite tienen envío express gratuito. 
+                Todos los pedidos incluyen número de rastreo en tiempo real.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal reveal-delay-2">
+            <button class="faq-toggle" aria-expanded="false">
+              ¿Puedo hacer cambios o devoluciones?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Aceptamos cambios y devoluciones dentro de los 30 días posteriores a la compra, siempre que 
+                el producto esté sin usar y en su empaque original. Para productos de edición limitada, 
+                aplicamos políticas especiales. El proceso es simple y sin complicaciones.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal reveal-delay-3">
+            <button class="faq-toggle" aria-expanded="false">
+              ¿Son realmente artesanales?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Absolutamente. Cada par pasa por más de 120 pasos manuales realizados por maestros zapateros 
+                con décadas de experiencia. Utilizamos cueros de origen certificado y materiales de primera 
+                calidad. Puedes visitar nuestro taller y ver el proceso en persona con previa cita.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal reveal-delay-4">
+            <button class="faq-toggle" aria-expanded="false">
+              ¿Ofrecen personalización?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Los miembros Elite tienen acceso a nuestro servicio de personalización donde puedes elegir 
+                colores, materiales, grabados y detalles exclusivos. También ofrecemos servicios de 
+                personalización puntual para pedidos de 3+ pares. Contáctanos para más detalles.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-toggle" aria-expanded="false">
+              ¿Cuál es la garantía del producto?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Todos nuestros zapatos tienen garantía de 2 años contra defectos de fabricación. 
+                Adicionalmente, ofrecemos servicio de mantenimiento y restauración a precios preferenciales 
+                para que tu calzado dure toda la vida con el cuidado adecuado.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CONTACTO
+       ══════════════════════════════════════════════ -->
+  <section id="contact" class="py-24 lg:py-36" aria-labelledby="contact-title">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Info de contacto -->
+        <div>
+          <p class="section-eyebrow reveal">Contacto</p>
+          <h2 class="section-title reveal reveal-delay-1" id="contact-title">
+            Hablemos sobre<br/><em>tu próximo par</em>
+          </h2>
+          <div class="divider-gold reveal reveal-delay-1"></div>
+          <p class="section-subtitle reveal reveal-delay-2">
+            ¿Tienes preguntas sobre productos, pedidos o membresías?
+            Nuestro equipo responde en menos de 24 horas.
+          </p>
+
+          <div class="space-y-5 mt-10">
+            <div class="flex items-start gap-4 reveal reveal-delay-2">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                   style="background:rgba(201,169,110,0.12); color:var(--brand-gold);">
+                <i class="ri-map-pin-line text-lg" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">Showroom principal</p>
+                <p style="color:var(--text-muted); font-size:0.88rem;">Av. Insurgentes Sur 1765, Piso 4<br/>Ciudad de México, CP 03100</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 reveal reveal-delay-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                   style="background:rgba(201,169,110,0.12); color:var(--brand-gold);">
+                <i class="ri-phone-line text-lg" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">Teléfono</p>
+                <a href="tel:+525512345678" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none; transition:color 0.3s;" 
+                   onmouseover="this.style.color='var(--brand-gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                  +52 (55) 1234-5678
+                </a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 reveal reveal-delay-4">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                   style="background:rgba(201,169,110,0.12); color:var(--brand-gold);">
+                <i class="ri-mail-line text-lg" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">Email</p>
+                <a href="mailto:hola@stepstyle.com" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none; transition:color 0.3s;"
+                   onmouseover="this.style.color='var(--brand-gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                  hola@stepstyle.com
+                </a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 reveal">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                   style="background:rgba(201,169,110,0.12); color:var(--brand-gold);">
+                <i class="ri-time-line text-lg" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">Horario</p>
+                <p style="color:var(--text-muted); font-size:0.88rem;">Lun – Vie: 9:00 – 19:00<br/>Sáb: 10:00 – 15:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="glass-card p-8 lg:p-10 reveal reveal-delay-2">
+          <h3 class="font-display" style="font-size:1.5rem; font-weight:400; margin-bottom:1.5rem;">
+            Envíanos un mensaje
+          </h3>
+
+          <form id="contact-form" novalidate aria-label="Formulario de contacto">
+            <div class="grid sm:grid-cols-2 gap-4 mb-0">
+              <div class="form-group">
+                <label class="form-label" for="name">Nombre *</label>
+                <input class="form-input" type="text" id="name" name="name"
+                       placeholder="Tu nombre" autocomplete="name" required />
+                <span class="form-error" data-error="name" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Correo electrónico *</label>
+                <input class="form-input" type="email" id="email" name="email"
+                       placeholder="tu@email.com" autocomplete="email" required />
+                <span class="form-error" data-error="email" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="phone">Teléfono (opcional)</label>
+              <input class="form-input" type="tel" id="phone" name="phone"
+                     placeholder="+52 55 1234 5678" autocomplete="tel" />
+              <span class="form-error" data-error="phone" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="subject">Asunto *</label>
+              <select class="form-select" id="subject" name="subject" required>
+                <option value="">Seleccionar asunto…</option>
+                <option value="producto">Consulta sobre producto</option>
+                <option value="pedido">Estado de mi pedido</option>
+                <option value="cambio">Cambio o devolución</option>
+                <option value="membresia">Membresía</option>
+                <option value="personalizado">Pedido personalizado</option>
+                <option value="otro">Otro</option>
+              </select>
+              <span class="form-error" data-error="subject" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Mensaje *</label>
+              <textarea class="form-textarea" id="message" name="message"
+                        placeholder="Cuéntanos en qué podemos ayudarte…" required></textarea>
+              <span class="form-error" data-error="message" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn-primary w-full" style="justify-content:center; margin-top:0.5rem;">
+              Enviar mensaje
+              <i class="ri-send-plane-line" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════ -->
+  <footer class="pt-20 pb-8" role="contentinfo">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+
+      <!-- Top grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10 pb-14"
+           style="border-bottom:1px solid var(--border-color);">
+
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <a href="#hero" class="footer-logo">StepStyle</a>
+          <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.8; margin-top:1rem; max-width:32ch;">
+            Calzado artesanal premium. Fusionamos tradición, diseño y calidad
+            superior en cada par que creamos.
+          </p>
+          <!-- Newsletter mini -->
+          <form class="flex gap-2 mt-5" onsubmit="event.preventDefault(); showToast('¡Suscrito con éxito! ✓');"
+                aria-label="Suscribirse al newsletter">
+            <input type="email" placeholder="Tu email" required
+                   class="form-input flex-1" style="font-size:0.85rem; padding:0.7rem 0.9rem;" aria-label="Email para newsletter"/>
+            <button type="submit" class="btn-primary" style="padding:0.7rem 1.2rem; white-space:nowrap; font-size:0.75rem;">
+              <i class="ri-mail-send-line" aria-hidden="true"></i>
+            </button>
+          </form>
+          <!-- Redes sociales -->
+          <div class="flex gap-3 mt-5" role="list" aria-label="Redes sociales">
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="ri-instagram-line" aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="ri-facebook-line" aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="TikTok"><i class="ri-tiktok-line" aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="Pinterest"><i class="ri-pinterest-line" aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="ri-youtube-line" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colección -->
+        <nav aria-label="Colección">
+          <h4 style="font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-primary); margin-bottom:1rem;">Colección</h4>
+          <a href="#products" class="footer-link">Zapatos Sport</a>
+          <a href="#products" class="footer-link">Zapatos Formales</a>
+          <a href="#products" class="footer-link">Casual</a>
+          <a href="#products" class="footer-link">Edición Limitada</a>
+          <a href="#products" class="footer-link">Novedades</a>
+          <a href="#products" class="footer-link">Outlet</a>
+        </nav>
+
+        <!-- Empresa -->
+        <nav aria-label="Empresa">
+          <h4 style="font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-primary); margin-bottom:1rem;">Empresa</h4>
+          <a href="#about"   class="footer-link">Sobre nosotros</a>
+          <a href="#gallery" class="footer-link">Galería</a>
+          <a href="#pricing" class="footer-link">Membresía</a>
+          <a href="#"        class="footer-link">Trabaja con nosotros</a>
+          <a href="#"        class="footer-link">Prensa</a>
+          <a href="#"        class="footer-link">Sostenibilidad</a>
+        </nav>
+
+        <!-- Soporte -->
+        <nav aria-label="Soporte">
+          <h4 style="font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-primary); margin-bottom:1rem;">Soporte</h4>
+          <a href="#faq"     class="footer-link">Preguntas frecuentes</a>
+          <a href="#contact" class="footer-link">Contacto</a>
+          <a href="#"        class="footer-link">Guía de tallas</a>
+          <a href="#"        class="footer-link">Rastrear pedido</a>
+          <a href="#"        class="footer-link">Cambios y devoluciones</a>
+          <a href="#"        class="footer-link">Política de privacidad</a>
+        </nav>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
+        <p style="font-size:0.8rem; color:var(--text-muted);">
+          © 2025 StepStyle. Todos los derechos reservados. Hecho con ♥ para los amantes del calzado.
+        </p>
+        <div class="flex items-center gap-4">
+          <!-- Pago iconos -->
+          <div class="flex items-center gap-2" aria-label="Métodos de pago aceptados">
+            <span style="font-size:0.75rem; color:var(--text-muted);">Pagos seguros:</span>
+            <i class="ri-visa-fill" aria-label="Visa" style="font-size:1.5rem; color:var(--text-muted);"></i>
+            <i class="ri-mastercard-fill" aria-label="Mastercard" style="font-size:1.5rem; color:var(--text-muted);"></i>
+            <i class="ri-paypal-fill" aria-label="PayPal" style="font-size:1.5rem; color:var(--text-muted);"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WhatsApp flotante ─────────────────────────── -->
+  <a id="whatsapp-btn"
+     href="https://wa.me/525512345678?text=Hola%20StepStyle%2C%20me%20interesa%20un%20par%20de%20zapatos"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Chatear por WhatsApp">
+    <span class="wa-pulse" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Script principal -->
+  <script src="js/main.js"></script>
+</body>
+</html>
